@@ -272,5 +272,5 @@ require("telescope").setup{
 require("nvim-autopairs").setup {}
 local Rule = require('nvim-autopairs.rule')
 local npairs = require('nvim-autopairs')
-npairs.add_rule(Rule("<",">","rust"))
+npairs.add_rule(Rule("<",">",{"rust", "html"}))
 

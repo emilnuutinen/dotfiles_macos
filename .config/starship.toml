@@ -4,6 +4,9 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
+
 [aws]
 symbol = "aws "
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
@@ -27,7 +30,7 @@ symbol = "cobol "
 format = '\[[$symbol($version)]($style)\]'
 
 [conda]
-symbol = "conda "
+symbol = ""
 format = '\[[$symbol$environment]($style)\]'
 
 [crystal]
@@ -153,6 +156,7 @@ format = '\[[$symbol$cloud(\($project\))]($style)\]'
 format = '\[[$symbol]($style)\]'
 
 [package]
+disabled = true
 symbol = "pkg "
 style = "bold blue"
 format = '\[[$symbol$version]($style)\]'
