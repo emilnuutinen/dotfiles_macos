@@ -216,6 +216,7 @@ function! s:gruvbox_material_custom() abort
     call gruvbox_material#highlight('NormalFloat', l:palette.fg1, l:palette.bg0,)
     call gruvbox_material#highlight('FloatBorder', l:palette.bg5, l:palette.bg0,)
     call gruvbox_material#highlight('PMenu', l:palette.fg1, l:palette.bg0,)
+    call gruvbox_material#highlight('mkdBlockquote', l:palette.orange, l:palette.none, 'italic')
 endfunction
     
 augroup GruvboxMaterialCustom
