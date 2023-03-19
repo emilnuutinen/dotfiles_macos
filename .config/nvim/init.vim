@@ -167,6 +167,9 @@ set linebreak
 " Scroll past lastline
 set display+=lastline
 
+" More breathing room when scrolling
+set scrolloff=20
+
 " Show line nubmers
 set number
 
@@ -179,7 +182,7 @@ let g:gruvbox_material_diagnostic_line_highlight='1'
 let g:gruvbox_material_diagnostic_virtual_text='colored'
 let g:gruvbox_material_spell_foreground='colored'
 let g:gruvbox_material_enable_italic='1'
-let g:gruvbox_material_enable_bold='1'
+let g:gruvbox_material_enable_bold='0'
 let g:gruvbox_material_disable_terminal_colors=1
 function! s:gruvbox_material_custom() abort
     highlight! link TSString String
@@ -192,10 +195,14 @@ function! s:gruvbox_material_custom() abort
     highlight! link mkdBold Fg 
     highlight! link mkdCodeDelimiter Green
     highlight! link mkdListItemCheckbox Fg
+    highlight! link TSType BlueItalic
+    highlight! link TSTypeBuiltin BlueItalic
+    highlight! link TSTypeDefinition BlueItalic
+    highlight! link TSNamespace PurpleItalic
 
-    let l:palette = gruvbox_material#get_palette('hard', 'original', {'bg0': ['#171513', '0']})
+    let l:palette = gruvbox_material#get_palette('hard', 'original', {'bg0': ['#1b1b1b', '0']})
 
-    call gruvbox_material#highlight('String', l:palette.green, l:palette.none)
+    call gruvbox_material#highlight('String', l:palette.yellow, l:palette.none)
     call gruvbox_material#highlight('markdownH1', l:palette.yellow, l:palette.none, 'bold')
     call gruvbox_material#highlight('markdownH2', l:palette.yellow, l:palette.none, 'bold')
     call gruvbox_material#highlight('markdownH3', l:palette.yellow, l:palette.none, 'bold')
@@ -217,6 +224,11 @@ function! s:gruvbox_material_custom() abort
     call gruvbox_material#highlight('FloatBorder', l:palette.bg5, l:palette.bg0,)
     call gruvbox_material#highlight('PMenu', l:palette.fg1, l:palette.bg0,)
     call gruvbox_material#highlight('mkdBlockquote', l:palette.orange, l:palette.none, 'italic')
+    call gruvbox_material#highlight('ErrorFloat', l:palette.red, l:palette.bg0)
+    call gruvbox_material#highlight('WarningFloat', l:palette.yellow, l:palette.bg0)
+    call gruvbox_material#highlight('InfoFloat', l:palette.blue, l:palette.bg0)
+    call gruvbox_material#highlight('HintFloat', l:palette.green, l:palette.bg0)
+    call gruvbox_material#highlight('Special', l:palette.blue, l:palette.none)
 endfunction
     
 augroup GruvboxMaterialCustom
@@ -303,6 +315,7 @@ autocmd filetype markdown setlocal spell spelllang=en
 autocmd filetype markdown set textwidth=80
 autocmd filetype markdown set colorcolumn=
 autocmd filetype markdown set nolist
+autocmd filetype markdown set scrolloff=0
 " Fix wrapping lists with gq
 autocmd FileType markdown set comments=fb:*,fb:+,fb:-,n:> indentexpr=
 
