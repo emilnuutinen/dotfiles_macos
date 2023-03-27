@@ -167,9 +167,6 @@ set linebreak
 " Scroll past lastline
 set display+=lastline
 
-" More breathing room when scrolling
-set scrolloff=20
-
 " Show line nubmers
 set number
 
@@ -219,15 +216,14 @@ function! s:gruvbox_material_custom() abort
     call gruvbox_material#highlight('SpellCap', l:palette.blue, l:palette.none)
     call gruvbox_material#highlight('SpellLocal', l:palette.aqua, l:palette.none)
     call gruvbox_material#highlight('SpellRare', l:palette.purple, l:palette.none)
-    call gruvbox_material#highlight('Comment', l:palette.bg5, l:palette.none, 'italic')
-    call gruvbox_material#highlight('NormalFloat', l:palette.fg1, l:palette.bg0,)
-    call gruvbox_material#highlight('FloatBorder', l:palette.bg5, l:palette.bg0,)
-    call gruvbox_material#highlight('PMenu', l:palette.fg1, l:palette.bg0,)
-    call gruvbox_material#highlight('mkdBlockquote', l:palette.orange, l:palette.none, 'italic')
-    call gruvbox_material#highlight('ErrorFloat', l:palette.red, l:palette.bg0)
-    call gruvbox_material#highlight('WarningFloat', l:palette.yellow, l:palette.bg0)
-    call gruvbox_material#highlight('InfoFloat', l:palette.blue, l:palette.bg0)
-    call gruvbox_material#highlight('HintFloat', l:palette.green, l:palette.bg0)
+    call gruvbox_material#highlight('Comment', l:palette.grey0, l:palette.none, 'italic')
+    call gruvbox_material#highlight('NormalFloat', l:palette.fg1, l:palette.bg_dim,)
+    call gruvbox_material#highlight('FloatBorder', l:palette.bg5, l:palette.bg_dim,)
+    call gruvbox_material#highlight('PMenu', l:palette.fg1, l:palette.bg_dim,)
+    call gruvbox_material#highlight('ErrorFloat', l:palette.red, l:palette.bg_dim)
+    call gruvbox_material#highlight('WarningFloat', l:palette.yellow, l:palette.bg_dim)
+    call gruvbox_material#highlight('InfoFloat', l:palette.blue, l:palette.bg_dim)
+    call gruvbox_material#highlight('HintFloat', l:palette.green, l:palette.bg_dim)
     call gruvbox_material#highlight('Special', l:palette.blue, l:palette.none)
 endfunction
     
@@ -315,7 +311,6 @@ autocmd filetype markdown setlocal spell spelllang=en
 autocmd filetype markdown set textwidth=80
 autocmd filetype markdown set colorcolumn=
 autocmd filetype markdown set nolist
-autocmd filetype markdown set scrolloff=0
 " Fix wrapping lists with gq
 autocmd FileType markdown set comments=fb:*,fb:+,fb:-,n:> indentexpr=
 
