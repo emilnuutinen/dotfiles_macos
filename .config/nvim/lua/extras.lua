@@ -215,7 +215,7 @@ lspconfig.tsserver.setup {
 
 vim.diagnostic.config({
     signs = true,
-    update_in_insert = true,
+    update_in_insert = false,
     underline = true,
     severity_sort = false,
     float = {
