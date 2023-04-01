@@ -197,7 +197,7 @@ function! s:gruvbox_material_custom() abort
     highlight! link TSTypeDefinition BlueItalic
     highlight! link TSNamespace PurpleItalic
 
-    let l:palette = gruvbox_material#get_palette('hard', 'original', {'bg0': ['#1b1b1b', '0']})
+    let l:palette = gruvbox_material#get_palette('hard', 'original', {'bg0': ['#121212', '0']})
 
     call gruvbox_material#highlight('String', l:palette.yellow, l:palette.none)
     call gruvbox_material#highlight('markdownH1', l:palette.yellow, l:palette.none, 'bold')
@@ -217,14 +217,18 @@ function! s:gruvbox_material_custom() abort
     call gruvbox_material#highlight('SpellLocal', l:palette.aqua, l:palette.none)
     call gruvbox_material#highlight('SpellRare', l:palette.purple, l:palette.none)
     call gruvbox_material#highlight('Comment', l:palette.grey0, l:palette.none, 'italic')
-    call gruvbox_material#highlight('NormalFloat', l:palette.fg1, l:palette.bg_dim,)
-    call gruvbox_material#highlight('FloatBorder', l:palette.bg5, l:palette.bg_dim,)
-    call gruvbox_material#highlight('PMenu', l:palette.fg1, l:palette.bg_dim,)
-    call gruvbox_material#highlight('ErrorFloat', l:palette.red, l:palette.bg_dim)
-    call gruvbox_material#highlight('WarningFloat', l:palette.yellow, l:palette.bg_dim)
-    call gruvbox_material#highlight('InfoFloat', l:palette.blue, l:palette.bg_dim)
-    call gruvbox_material#highlight('HintFloat', l:palette.green, l:palette.bg_dim)
+    call gruvbox_material#highlight('LspInlayHint', l:palette.bg5, l:palette.none, 'italic')
+    call gruvbox_material#highlight('NormalFloat', l:palette.fg1, l:palette.bg0,)
+    call gruvbox_material#highlight('FloatBorder', l:palette.bg5, l:palette.bg0,)
+    call gruvbox_material#highlight('PMenu', l:palette.fg1, l:palette.bg0,)
+    call gruvbox_material#highlight('ErrorFloat', l:palette.red, l:palette.bg0)
+    call gruvbox_material#highlight('WarningFloat', l:palette.yellow, l:palette.bg0)
+    call gruvbox_material#highlight('InfoFloat', l:palette.blue, l:palette.bg0)
+    call gruvbox_material#highlight('HintFloat', l:palette.green, l:palette.bg0)
     call gruvbox_material#highlight('Special', l:palette.blue, l:palette.none)
+    call gruvbox_material#highlight('PmenuSel', l:palette.fg1, l:palette.bg5)
+    call gruvbox_material#highlight('PmenuSbar', l:palette.none, l:palette.none)
+    call gruvbox_material#highlight('PmenuThumb', l:palette.none, l:palette.bg5)
 endfunction
     
 augroup GruvboxMaterialCustom
