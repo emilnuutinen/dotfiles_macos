@@ -8,13 +8,12 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
+    ['<Up>'] = cmp.mapping.select_prev_item(),
+    ['<Down>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-l>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-k>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({
@@ -49,17 +48,6 @@ cmp.setup.cmdline(':', {
   })
 })
 
-local border = {
-  {"╭", "FloatBorder"},
-  {"─", "FloatBorder"},
-  {"╮", "FloatBorder"},
-  {"│", "FloatBorder"},
-  {"╯", "FloatBorder"},
-  {"─", "FloatBorder"},
-  {"╰", "FloatBorder"},
-  {"│", "FloatBorder"},
-}
-
 -- LSP settings (for overriding per client)
 local handlers =  {
   ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {width = 80}),
@@ -83,7 +71,7 @@ require("lsp-inlayhints").setup(
         prefix = "=> ",
         remove_colon_start = true,
       },
-      highlight = "Comment",
+     -- highlight = "Comment",
     },
   }
 )
