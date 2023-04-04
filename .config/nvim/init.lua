@@ -1,85 +1,9 @@
 require ("extras")
+require ("mappings")
+require ("plugins")
 
 vim.cmd[[
-
-" Plugins
-call plug#begin(stdpath('data') . '/plugged')
-Plug 'preservim/vim-markdown'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
-Plug 'nvim-telescope/telescope-file-browser.nvim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'voldikss/vim-floaterm'
-Plug 'windwp/nvim-autopairs'
-Plug 'lukas-reineke/indent-blankline.nvim'
-
-" Completion framework:
-Plug 'hrsh7th/nvim-cmp' 
-
-" LSP completion source:
-Plug 'hrsh7th/cmp-nvim-lsp'
-
-"-- Useful completion sources:
-Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/vim-vsnip'
-
-"-- Inlay hints
-Plug 'lvimuser/lsp-inlayhints.nvim'
-
-"-- Themes
-Plug 'sainnhe/gruvbox-material'
-
-call plug#end()
-
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1 
-
-"-- Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fc <cmd>Telescope git_commits<cr>
-nnoremap <leader>fr <cmd>Telescope spell_suggest<cr>
-nnoremap <leader>fb <cmd>Telescope file_browser<cr>
-
-"-- More natural movement
-noremap ; l
-noremap l k
-noremap k j
-noremap j h
-
-"-- More natural window movement
-nnoremap <C-h> <C-W>h
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-l> <C-W>l
-
-nnoremap <CR> :noh<CR><CR>
-
-"-- Map arrow keys to move naturally
-imap <silent> <Down> <C-o>gj
-imap <silent> <Up> <C-o>gk
-nmap <silent> <Down> gj
-nmap <silent> <Up> gk
-
-"-- map leader to Space
-nnoremap <SPACE> <Nop>
-map <SPACE> <Leader>
-
-"-- Insert bolded text with a timestamp and subject in markdown
-imap <silent> <F1> <C-R>=strftime("**[%H:%M]** ")<CR><C-o>:cal cursor(0,13)<CR>
-nmap <silent> <F1> i<C-R>=strftime("**[%H:%M]** ")<CR><C-o>:cal cursor(0,13)<CR>
-
-"-- Insert a new todo template
-imap <silent> <F2> <C-R>="- [ ] "<CR><C-o>:cal cursor(0,10)<CR>
-nmap <silent> <F2> i<C-R>="- [ ] "<CR><C-o>:cal cursor(0,12)<CR>
-
-"-- Insert heading with todays date in markdown
-imap <silent> <F3> <C-R>=strftime("### %d-%m-%Y")<CR>
-nmap <silent> <F3> i<C-R>=strftime("### %d-%m-%Y")<CR>
 
 " Python tabbing (PEP 8)
 au BufNewFile,BufRead *.py set filetype=python 
@@ -155,61 +79,9 @@ augroup GruvboxMaterialCustom
     autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
 augroup END
 
-nnoremap <Leader>=  <C-W>=
-
-" Normal statusline
-set statusline=%1*                  " change colors
-set statusline+=[%{GetMode()}]      " show mode
-set statusline+=%2*                 " change colors
-set statusline+=\ %t                " file name
-set statusline+=%3*                 " change colors
-set statusline+=\ %m                " modified flag
-set statusline+=%2*                 " change colors
-set statusline+=%=                  " split alignment to right from here
-set statusline+=%c/%l               " col/line
-set statusline+=\ %y                " show filetype
-
-" statusline for markdown files
-function StatuslineMD()
-    set statusline=%1*              " change colors
-    set statusline+=[%{GetMode()}]  " show mode
-    set statusline+=%2*             " change colors
-    set statusline+=\ %t            " file name
-    set statusline+=%3*             " change colors
-    set statusline+=\ %m            " modified flag
-    set statusline+=%2*             " change colors
-    set statusline+=%=              " split alignment to right from here
-    set statusline+=%c:%l/%L        " line X of Y
-    set statusline+=\ (%{wordcount().words}\ words)   " Get word count
-endfunction
-
-" Get current mode
-function! GetMode()
-    let l:mode=mode()
-    if l:mode==#"n"
-      return "NORMAL"
-    elseif l:mode==?"v"
-      return "VISUAL"
-    elseif l:mode==#"i"
-      return "INSERT"
-    elseif l:mode==#"R"
-      return "REPLACE"
-    elseif l:mode==?"s"
-      return "SELECT"
-    elseif l:mode==#"t"
-      return "TERMINAL"
-    elseif l:mode==#"c"
-      return "COMMAND"
-    elseif l:mode==#"!"
-      return "SHELL"
-    endif
-endfunction
-
 " Filetype spesific settings
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd filetype markdown setlocal nonumber
-autocmd filetype netrw setlocal statusline=%1*%=%l/%L
-autocmd filetype markdown setlocal statusline=%{StatuslineMD()}
 autocmd filetype markdown setlocal spell spelllang=en
 autocmd filetype markdown set textwidth=80
 autocmd filetype markdown set colorcolumn=
@@ -227,12 +99,6 @@ set guicursor=
 
 " configure title only show filename and flags
 set titlestring=%t\ %r%m titlelen=50
-
-" Statusline colors
-hi User1 guibg=NONE guifg=#b8bb26
-hi User2 guibg=NONE guifg=#fabd2f
-hi User3 guibg=NONE guifg=#fb4934
-hi StatusLineTermNC guifg=NONE guibg=NONE
 
 " Format on save
 autocmd BufWritePre * lua vim.lsp.buf.format()
@@ -270,13 +136,11 @@ vim.opt.signcolumn = 'number'
 -- Enable use of the mouse for all modes
 vim.opt.mouse = 'a'
 
-
 -- 1 tab is 2 spaces
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 0
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-
 
 -- disable folding
 vim.opt.foldenable = false
@@ -314,10 +178,8 @@ vim.opt.number = true
 -- enable setting title
 vim.opt.title = true
 
-
 -- Always display the status line, even if only one window is displayed
 vim.opt.laststatus = 3
-
 
 -- Config for vim-markdown
 vim.g.vim_markdown_folding_disabled = 1
