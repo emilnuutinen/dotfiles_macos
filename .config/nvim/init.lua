@@ -81,9 +81,6 @@ nmap <silent> <F2> i<C-R>="- [ ] "<CR><C-o>:cal cursor(0,12)<CR>
 imap <silent> <F3> <C-R>=strftime("### %d-%m-%Y")<CR>
 nmap <silent> <F3> i<C-R>=strftime("### %d-%m-%Y")<CR>
 
-" Scroll past lastline
-set display+=lastline
-
 " Python tabbing (PEP 8)
 au BufNewFile,BufRead *.py set filetype=python 
 autocmd filetype python setlocal tabstop=4
@@ -102,17 +99,7 @@ autocmd filetype go setlocal shiftwidth=4
 autocmd filetype go setlocal expandtab
 
 
-" vim.opt.theme  
-set background=dark
-let g:gruvbox_material_background='hard'
-let g:gruvbox_material_foreground='original'
-let g:gruvbox_material_transparent_background='2'
-let g:gruvbox_material_diagnostic_line_highlight='1'
-let g:gruvbox_material_diagnostic_virtual_text='colored'
-let g:gruvbox_material_spell_foreground='colored'
-let g:gruvbox_material_enable_italic='1'
-let g:gruvbox_material_enable_bold='0'
-let g:gruvbox_material_disable_terminal_colors=1
+" Theme  
 function! s:gruvbox_material_custom() abort
     highlight! link TSString String
     highlight! link CocSymbolString String
@@ -167,12 +154,7 @@ augroup GruvboxMaterialCustom
     autocmd!
     autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
 augroup END
-colorscheme gruvbox-material
 
-" Split windows
-set fillchars=vert:\│
-set splitright
-set splitbelow
 nnoremap <Leader>=  <C-W>=
 
 " Normal statusline
@@ -258,6 +240,24 @@ autocmd BufWritePre * lua vim.lsp.buf.format()
 " Hide foldcolumn
 set foldcolumn=0
 ]]
+
+-- Split windows
+vim.opt.fillchars = {vert ='│'}
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Theme
+vim.opt.background = 'dark'
+vim.g.gruvbox_material_background = 'hard'
+vim.g.gruvbox_material_foreground = 'original'
+vim.g.gruvbox_material_transparent_background = '2'
+vim.g.gruvbox_material_diagnostic_line_highlight = '1'
+vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
+vim.g.gruvbox_material_spell_foreground = 'colored'
+vim.g.gruvbox_material_enable_italic = '1'
+vim.g.gruvbox_material_enable_bold = '0'
+vim.g.gruvbox_material_disable_terminal_colors = 1
+vim.cmd('colorscheme gruvbox-material')
 
 vim.g.floaterm_keymap_toggle = '<F12>'
 vim.g.floaterm_autoclose = 2
