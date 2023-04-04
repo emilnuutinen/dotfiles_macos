@@ -54,12 +54,6 @@ local handlers =  {
   ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {width = 80}),
 }
 
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
 require("lsp-inlayhints").setup(
   {
     inlay_hints = {
@@ -71,7 +65,6 @@ require("lsp-inlayhints").setup(
         prefix = "=> ",
         remove_colon_start = true,
       },
-     -- highlight = "Comment",
     },
   }
 )
@@ -201,6 +194,12 @@ lspconfig.tsserver.setup {
   }
 }
 
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
 vim.diagnostic.config({
     signs = true,
     update_in_insert = false,
@@ -218,7 +217,6 @@ vim.diagnostic.config({
 -- Show line diagnostics automatically in hover window
 -- note: this setting is global and should be set only once
 vim.o.updatetime = 100
-vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })]])
 
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages

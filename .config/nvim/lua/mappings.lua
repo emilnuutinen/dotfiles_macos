@@ -1,7 +1,3 @@
--- map leader to Space
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 function map(mode, shortcut, command)
   vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
 end
@@ -25,6 +21,11 @@ end
 function tmap(shortcut, command)
   map('t', shortcut, command)
 end
+
+-- map leader to Space
+nmap('<Space>', '<Nop>')
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Find files using Telescope command-line sugar.
 nmap('<leader>ff', '<cmd>Telescope find_files<cr>')
@@ -53,7 +54,12 @@ imap('<Up>','<C-o>gk')
 nmap('<Down>','gj')
 nmap('<Up>','gk')
 
+-- Equal panes
 nmap('<Leader>=',  '<C-W>=')
+
+-- Center screen on search result
+nmap('n', 'nzzzv')
+nmap('N', 'Nzzzv')
 
 vim.cmd[[
 "-- Insert bolded text with a timestamp and subject in markdown

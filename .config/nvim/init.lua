@@ -22,7 +22,17 @@ autocmd filetype go setlocal softtabstop=4
 autocmd filetype go setlocal shiftwidth=4
 autocmd filetype go setlocal expandtab
 
-" Theme  
+" Filetype spesific settings
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd filetype markdown setlocal nonumber
+autocmd filetype markdown setlocal spell spelllang=en
+autocmd filetype markdown set textwidth=80
+autocmd filetype markdown set colorcolumn=
+autocmd filetype markdown set nolist
+" Fix wrapping lists with gq
+autocmd FileType markdown set comments=fb:*,fb:+,fb:-,n:> indentexpr=
+
+" Gruvbox 
 function! s:gruvbox_material_custom() abort
     highlight! link TSString String
     highlight! link CocSymbolString String
@@ -77,16 +87,6 @@ augroup GruvboxMaterialCustom
     autocmd!
     autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
 augroup END
-
-" Filetype spesific settings
-autocmd BufNewFile,BufRead *.md set filetype=markdown
-autocmd filetype markdown setlocal nonumber
-autocmd filetype markdown setlocal spell spelllang=en
-autocmd filetype markdown set textwidth=80
-autocmd filetype markdown set colorcolumn=
-autocmd filetype markdown set nolist
-" Fix wrapping lists with gq
-autocmd FileType markdown set comments=fb:*,fb:+,fb:-,n:> indentexpr=
 ]]
 
 -- Use system clipboard
