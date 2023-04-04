@@ -2,9 +2,9 @@ require ("extras")
 require ("mappings")
 require ("plugins")
 
-vim.cmd[[
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1 
+vim.env["NVIM_TUI_ENABLE_TRUE_COLOR"] = 1
 
+vim.cmd[[
 " Python tabbing (PEP 8)
 au BufNewFile,BufRead *.py set filetype=python 
 autocmd filetype python setlocal tabstop=4
@@ -21,7 +21,6 @@ autocmd filetype go setlocal tabstop=4
 autocmd filetype go setlocal softtabstop=4
 autocmd filetype go setlocal shiftwidth=4
 autocmd filetype go setlocal expandtab
-
 
 " Theme  
 function! s:gruvbox_material_custom() abort
@@ -88,24 +87,29 @@ autocmd filetype markdown set colorcolumn=
 autocmd filetype markdown set nolist
 " Fix wrapping lists with gq
 autocmd FileType markdown set comments=fb:*,fb:+,fb:-,n:> indentexpr=
-
-" Use system clipboard
-set clipboard+=unnamedplus
-
-highlight FoldColumn guibg=0
-
-" Disable cursor changing in insert mode
-set guicursor=
-
-" configure title only show filename and flags
-set titlestring=%t\ %r%m titlelen=50
-
-" Format on save
-autocmd BufWritePre * lua vim.lsp.buf.format()
-
-" Hide foldcolumn
-set foldcolumn=0
 ]]
+
+-- Use system clipboard
+vim.opt.clipboard:append("unnamedplus")
+
+-- Set highlight for FoldColumn
+vim.cmd("highlight FoldColumn guibg=0")
+
+-- Disable cursor changing in insert mode
+vim.opt.guicursor = ""
+
+-- Configure title to show filename and flags
+vim.opt.titlestring = "%t  %r%m"
+vim.opt.titlelen = 50
+
+-- Hide foldcolumn
+vim.o.foldenable = false
+
+-- Format on save
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = "*",
+  callback = function() vim.lsp.buf.format() end,
+})
 
 -- Split windows
 vim.opt.fillchars = {vert ='│'}
