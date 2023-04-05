@@ -1,4 +1,5 @@
 require ("extras")
+require ("lsp")
 require ("mappings")
 require ("plugins")
 
@@ -88,6 +89,8 @@ augroup GruvboxMaterialCustom
     autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
 augroup END
 ]]
+
+vim.opt.updatetime = 50
 
 -- Use system clipboard
 vim.opt.clipboard:append("unnamedplus")
