@@ -16,3 +16,4 @@ window=3
 tmux new-window -t $session:$window -n 'term'
 
 tmux a -t  $session:1
+tmux switch-client -t $session:1

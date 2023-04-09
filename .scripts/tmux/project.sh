@@ -1,12 +1,17 @@
 #!/bin/bash
 
-session="base"
+session=$1
+
+if [ ! -d ~/repos/$session ]; then
+  mkdir ~/repos/$session
+fi
+
+cd ~/repos/$session
 
 tmux new-session -d -s $session
 
 window=1
-tmux rename-window -t $session:$window 'note'
-tmux send-keys -t $session:$window 'jf' C-m
+tmux send-keys -t $session:$window 'vim' C-m
 
 window=2
 tmux new-window -t $session:$window
