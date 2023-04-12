@@ -39,8 +39,8 @@ require('lualine').setup {
   options = {
     icons_enabled = false,
     theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = "|",
+		section_separators = "",
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -56,9 +56,9 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff'},
-    lualine_c = {'filename'},
-    lualine_x = {'diagnostics', 'encoding', 'filetype','progress','location'},
+    lualine_b = {'branch'},
+    lualine_c = {'filename', 'diagnostics', 'diff'},
+    lualine_x = {'encoding', 'filetype', 'progress', 'location'},
     lualine_y = {},
     lualine_z = {}
   },
