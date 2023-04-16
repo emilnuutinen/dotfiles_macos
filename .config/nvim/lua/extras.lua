@@ -34,6 +34,16 @@ autopairs.add_rules {
 }
 
 -- Lualine
+local function getWords()
+  local validFileTypes = {md= true, txt = true, markdown = true}
+
+  if validFileTypes[vim.bo.filetype] then
+    return vim.fn.wordcount().words .. " words"
+  else
+    return ""
+  end
+end
+
 local lualine = require('lualine')
 require('lualine').setup {
   options = {
@@ -58,7 +68,7 @@ require('lualine').setup {
     lualine_a = {'mode'},
     lualine_b = {'branch'},
     lualine_c = {'filename', 'diagnostics', 'diff'},
-    lualine_x = {'encoding', 'filetype', 'progress', 'location'},
+    lualine_x = {'encoding', 'filetype', 'progress', 'location', { getWords }},
     lualine_y = {},
     lualine_z = {}
   },
