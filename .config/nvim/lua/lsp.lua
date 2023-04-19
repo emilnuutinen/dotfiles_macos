@@ -111,7 +111,7 @@ local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local servers = { 'bashls', 'pylsp', 'cssls', 'html', 'vimls' }
+local servers = { 'bashls', 'cssls', 'html', 'vimls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     -- on_attach = my_custom_on_attach,
@@ -121,6 +121,18 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+lspconfig.pylsp.setup {
+	settings = {
+		pylsp = {
+			plugins = {
+				ruff = {
+					enabled = true,
+					extendSelect = { "I" },
+				},
+			}
+		}
+	}
+}
 
 lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
