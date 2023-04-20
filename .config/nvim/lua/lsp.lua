@@ -122,6 +122,9 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.pylsp.setup {
+  on_attach = on_attach,
+  handlers = handlers,
+  capabilities = capabilities,
 	settings = {
 		pylsp = {
 			plugins = {
