@@ -39,6 +39,10 @@ nmap('j','h')
 nmap('k','j')
 nmap('l','k')
 nmap(';','l')
+vmap('j','h')
+vmap('k','j')
+vmap('l','k')
+vmap(';','l')
 
 -- More natural window movement
 nmap('<C-h>','<C-W>h')
@@ -61,17 +65,14 @@ nmap('<Leader>=',  '<C-W>=')
 nmap('n', 'nzzzv')
 nmap('N', 'Nzzzv')
 
-vim.cmd[[
-"-- Insert bolded text with a timestamp and subject in markdown
-imap <silent> <F1> <C-R>=strftime("**[%H:%M]** ")<CR><C-o>:cal cursor(0,13)<CR>
-nmap <silent> <F1> i<C-R>=strftime("**[%H:%M]** ")<CR><C-o>:cal cursor(0,13)<CR>
+-- Insert bolded text with a timestamp and subject in markdown
+imap('<F1>', '<C-R>=strftime("**[%H:%M]** ")<CR><C-o>:cal cursor(0,13)<CR>')
+nmap('<F1>', 'i<C-R>=strftime("**[%H:%M]** ")<CR><C-o>:cal cursor(0,13)<CR>')
 
-"-- Insert a new todo template
-imap <silent> <F2> <C-R>="- [ ] "<CR><C-o>:cal cursor(0,10)<CR>
-nmap <silent> <F2> i<C-R>="- [ ] "<CR><C-o>:cal cursor(0,12)<CR>
+-- Insert a new todo template
+imap('<F2>','<C-R>="- [ ] "<CR><C-o>:cal cursor(0,10)<CR>')
+nmap('<F2>', 'i<C-R>="- [ ] "<CR><C-o>:cal cursor(0,12)<CR>')
 
-"-- Insert heading with todays date in markdown
-imap <silent> <F3> <C-R>=strftime("### %d-%m-%Y")<CR>
-nmap <silent> <F3> i<C-R>=strftime("### %d-%m-%Y")<CR>
-
-]]
+-- Insert heading with todays date in markdown
+imap('<F3>','<C-R>=strftime("### %d-%m-%Y")<CR>')
+nmap('<F3>','i<C-R>=strftime("### %d-%m-%Y")<CR>')
