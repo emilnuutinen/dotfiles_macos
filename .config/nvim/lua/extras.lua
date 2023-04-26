@@ -44,11 +44,25 @@ local function getWords()
   end
 end
 
+local function progress()
+  local cur = vim.fn.line('.')
+  local total = vim.fn.line('$')
+  return string.format('%2d%%%%', math.floor(cur / total * 100))
+end
+
+local function location()
+  local line = vim.fn.line('.')
+  local col = vim.fn.virtcol('.')
+  return string.format('ln %d, col %d', line, col)
+end
+
+local custom_gruvbox = require'lualine.themes.custom_gruvbox'
+
 local lualine = require('lualine')
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'auto',
+    theme = custom_gruvbox,
     component_separators = "|",
 		section_separators = "",
     disabled_filetypes = {
@@ -57,7 +71,7 @@ require('lualine').setup {
     },
     ignore_focus = {},
     always_divide_middle = true,
-    globalstatus = true,
+    globalstatus = false,
     refresh = {
       statusline = 1000,
       tabline = 1000,
@@ -67,21 +81,35 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch'},
-    lualine_c = {'filename', 'diagnostics', 'diff'},
-    lualine_x = {'encoding', 'filetype', 'progress', 'location', { getWords }},
+    lualine_c = {'diagnostics', 'diff'},
+    lualine_x = {'encoding', 'filetype', { progress }, { location }, { getWords }},
     lualine_y = {},
     lualine_z = {}
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = {'diagnostics', 'diff'},
+    lualine_x = {'encoding', 'filetype', { progress }, { location }, { getWords }},
     lualine_y = {},
     lualine_z = {}
   },
   tabline = {},
-  winbar = {},
-  inactive_winbar = {},
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  inactive_winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
   extensions = {}
 }

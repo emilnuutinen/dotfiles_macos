@@ -25,7 +25,7 @@ autocmd filetype go setlocal expandtab
 
 " Filetype spesific settings
 autocmd BufNewFile,BufRead *.md set filetype=markdown
-autocmd filetype markdown setlocal nonumber
+"autocmd filetype markdown setlocal nonumber
 autocmd filetype markdown setlocal spell spelllang=en
 autocmd filetype markdown set textwidth=80
 autocmd filetype markdown set colorcolumn=
@@ -186,7 +186,7 @@ vim.opt.number = true
 vim.opt.title = true
 
 -- Always display the status line, even if only one window is displayed
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 
 -- Config for vim-markdown
 vim.g.vim_markdown_folding_disabled = 1
