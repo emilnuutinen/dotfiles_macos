@@ -53,7 +53,7 @@ end
 local function location()
   local line = vim.fn.line('.')
   local col = vim.fn.virtcol('.')
-  return string.format('ln %d, col %d', line, col)
+  return string.format('row %d, col %d', line, col)
 end
 
 local custom_gruvbox = require'lualine.themes.custom_gruvbox'
@@ -71,7 +71,7 @@ require('lualine').setup {
     },
     ignore_focus = {},
     always_divide_middle = true,
-    globalstatus = false,
+    globalstatus = true,
     refresh = {
       statusline = 1000,
       tabline = 1000,
@@ -98,7 +98,7 @@ require('lualine').setup {
   winbar = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_c = {{ 'filename', padding = 0, path = 1, color = { bg = '#171717' } } },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}
@@ -106,7 +106,7 @@ require('lualine').setup {
   inactive_winbar = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_c = {{ 'filename', padding = 0, path = 1, color = { bg = '#171717' } } },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}
