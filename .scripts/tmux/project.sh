@@ -16,5 +16,8 @@ tmux send-keys -t $session:$window 'vim' C-m
 window=2
 tmux new-window -t $session:$window
 
+window=3
+tmux new-window -t $session:$window
+
 tmux a -t  $session:1
 tmux switch-client -t $session:1
