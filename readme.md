@@ -10,7 +10,7 @@
     - `go install golang.org/x/tools/gopls@latest`
 - [pylsp](https://github.com/python-lsp/python-lsp-server)
 - [python-lsp-ruff](https://github.com/python-lsp/python-lsp-ruff)
-    - `pip install "python-lsp-server[all] python-lsp-ruff"`
+    - `pip install "python-lsp-server[all]" python-lsp-ruff`
 - [bash](https://github.com/bash-lsp/bash-language-server)
 - [tsserver](https://github.com/typescript-language-server/typescript-language-server)
 - [html & css](https://github.com/hrsh7th/vscode-langservers-extracted)
