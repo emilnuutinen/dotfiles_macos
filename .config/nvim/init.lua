@@ -1,21 +1,11 @@
+require ("plugins")
 require ("extras")
 require ("lsp")
 require ("mappings")
-require ("plugins")
 
 vim.env["NVIM_TUI_ENABLE_TRUE_COLOR"] = 1
 
 vim.cmd[[
-" Python tabbing (PEP 8)
-au BufNewFile,BufRead *.py set filetype=python 
-autocmd filetype python setlocal tabstop=4
-autocmd filetype python setlocal softtabstop=4
-autocmd filetype python setlocal shiftwidth=4
-autocmd filetype python setlocal textwidth=79
-autocmd filetype python setlocal expandtab
-autocmd filetype python setlocal autoindent
-autocmd filetype python setlocal fileformat=unix
-
 " Go tabbing
 au BufNewFile,BufRead *.go set filetype=go
 autocmd filetype go setlocal tabstop=4
