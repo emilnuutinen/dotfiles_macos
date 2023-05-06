@@ -5,7 +5,7 @@
 ### LSP servers
 
 - [rust-analyzer](https://github.com/rust-lang/rust-analyzer)
-    - `rustup component add rust-src`
+    - `pacman -S rust-analyzer` or `brew install rust-analyzer`
 - [gopls](https://github.com/golang/tools/tree/master/gopls)
     - `go install golang.org/x/tools/gopls@latest`
 - [pylsp](https://github.com/python-lsp/python-lsp-server)
