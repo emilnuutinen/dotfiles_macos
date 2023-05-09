@@ -50,26 +50,11 @@ local function progress()
   return string.format('%2d%%%%', math.floor(cur / total * 100))
 end
 
-local function location()
-  local line = vim.fn.line('.')
-  local col = vim.fn.virtcol('.')
-  return string.format('row %d, col %d', line, col)
-end
-
-local custom_gruvbox = require'lualine.themes.custom_gruvbox'
-
 local lualine = require('lualine')
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = custom_gruvbox,
-    component_separators = "|",
-		section_separators = "",
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
-    ignore_focus = {},
+    theme = 'auto',
     always_divide_middle = true,
     globalstatus = true,
     refresh = {
@@ -81,35 +66,14 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch'},
-    lualine_c = {'diagnostics', 'diff'},
-    lualine_x = {'encoding', 'filetype', { progress }, { location }, { getWords }},
-    lualine_y = {},
-    lualine_z = {}
+    lualine_c = {'filename', 'diagnostics', 'diff'},
+    lualine_x = {'encoding', 'filetype', { getWords }},
+    lualine_y = {{ progress }},
+    lualine_z = {'location'}
   },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'diagnostics', 'diff'},
-    lualine_x = {'encoding', 'filetype', { progress }, { location }, { getWords }},
-    lualine_y = {},
-    lualine_z = {}
-  },
+  inactive_sections = {},
   tabline = {},
-  winbar = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {{ 'filename', padding = 0, path = 1, color = { bg = '#171717' } } },
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  inactive_winbar = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {{ 'filename', padding = 0, path = 1, color = { bg = '#171717' } } },
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
-  },
+  winbar = {},
+  inactive_winbar = {},
   extensions = {}
 }
