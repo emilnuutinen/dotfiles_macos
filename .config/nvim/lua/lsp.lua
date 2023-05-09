@@ -15,7 +15,7 @@ cmp.setup({
     ['<C-l>'] = cmp.mapping.scroll_docs(-4),
     ['<C-k>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
@@ -231,7 +231,7 @@ vim.diagnostic.config({
 
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = { "c", "cpp", "rust", "lua", "javascript", "go", "bash", "python", "dockerfile", "graphql", "html", "json", "scss", "toml", "tsx", "typescript", "vim", "yaml" },
+  ensure_installed = { "bash", "c", "cpp", "css", "dockerfile", "go", "graphql", "html", "javascript", "json", "lua", "python", "rust", "scss", "toml", "tsx", "typescript", "vim", "yaml" },
   auto_install = true,
   highlight = {
     enable = true,
