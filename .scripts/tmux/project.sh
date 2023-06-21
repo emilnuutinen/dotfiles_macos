@@ -1,12 +1,23 @@
 #!/bin/bash
 
-session=$1
+session=$2
 
-if [ ! -d ~/repos/$session ]; then
-  mkdir ~/repos/$session
-fi
-
-cd ~/repos/$session
+while getopts 'pw:' OPTION; do
+  case "$OPTION" in
+    p)
+      if [ ! -d ~/repos/personal/$session ]; then
+        mkdir ~/repos/personal/$session
+      fi
+      cd ~/repos/personal/$session
+      ;;
+    w)
+      if [ ! -d ~/repos/turkunlp/$session ]; then
+        mkdir ~/repos/turkunlp/$session
+      fi
+      cd ~/repos/turkunlp/$session
+      ;;
+  esac
+done
 
 tmux new-session -d -s $session
 
