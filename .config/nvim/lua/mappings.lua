@@ -45,10 +45,10 @@ vmap('l','k')
 vmap(';','l')
 
 -- More natural window movement
-nmap('<C-h>','<C-W>h')
-nmap('<C-j>','<C-W>j')
-nmap('<C-k>','<C-W>k')
-nmap('<C-l>','<C-W>l')
+nmap('<leader>j','<C-W>h')
+nmap('<leader>k','<C-W>j')
+nmap('<leader>l','<C-W>k')
+nmap('<leader>;','<C-W>l')
 
 nmap('<CR>',':noh<CR><CR>')
 

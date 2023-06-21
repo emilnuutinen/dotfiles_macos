@@ -120,7 +120,7 @@ vim.g.gruvbox_material_spell_foreground = 'colored'
 vim.g.gruvbox_material_enable_italic = '1'
 vim.g.gruvbox_material_enable_bold = '0'
 vim.g.gruvbox_material_disable_terminal_colors = 1
-vim.cmd('colorscheme gruvbox-material')
+vim.cmd.colorscheme 'gruvbox-material'
 
 vim.g.floaterm_keymap_toggle = '<F12>'
 vim.g.floaterm_autoclose = 2

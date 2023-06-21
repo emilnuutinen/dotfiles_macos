@@ -34,5 +34,5 @@ return require('packer').startup(function(use)
   use 'sainnhe/gruvbox-material'
 
   -- lualine
-  use'nvim-lualine/lualine.nvim'
+  use 'nvim-lualine/lualine.nvim'
 end)
