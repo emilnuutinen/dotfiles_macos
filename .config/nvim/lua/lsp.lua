@@ -87,6 +87,8 @@ local handlers =  {
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Enable inlay hints if client supports them
   if client.supports_method("textDocument/inlayHint") then
     vim.lsp.buf.inlay_hint(bufnr, true)
   end
