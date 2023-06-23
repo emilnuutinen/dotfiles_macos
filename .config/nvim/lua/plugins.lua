@@ -32,6 +32,7 @@ return require('packer').startup(function(use)
 
   -- Themes
   use 'sainnhe/gruvbox-material'
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- lualine
   use 'nvim-lualine/lualine.nvim'

@@ -55,10 +55,6 @@ function! s:gruvbox_material_custom() abort
     call gruvbox_material#highlight('htmlH4', l:palette.yellow, l:palette.none, 'bold')
     call gruvbox_material#highlight('htmlH5', l:palette.yellow, l:palette.none, 'bold')
     call gruvbox_material#highlight('htmlH6', l:palette.yellow, l:palette.none, 'bold')
-    call gruvbox_material#highlight('SpellBad', l:palette.red, l:palette.none)
-    call gruvbox_material#highlight('SpellCap', l:palette.blue, l:palette.none)
-    call gruvbox_material#highlight('SpellLocal', l:palette.aqua, l:palette.none)
-    call gruvbox_material#highlight('SpellRare', l:palette.purple, l:palette.none)
     call gruvbox_material#highlight('Comment', l:palette.grey0, l:palette.none, 'italic')
     call gruvbox_material#highlight('LspInlayHint', l:palette.bg5, l:palette.none, 'italic')
     call gruvbox_material#highlight('NormalFloat', l:palette.fg1, l:palette.bg0,)
@@ -85,9 +81,6 @@ vim.opt.updatetime = 50
 -- Use system clipboard
 vim.opt.clipboard:append("unnamedplus")
 
--- Set highlight for FoldColumn
-vim.cmd("highlight FoldColumn guibg=0")
-
 -- Disable cursor changing in insert mode
 vim.opt.guicursor = ""
 
@@ -113,14 +106,29 @@ vim.opt.splitbelow = true
 vim.opt.background = 'dark'
 vim.g.gruvbox_material_background = 'hard'
 vim.g.gruvbox_material_foreground = 'original'
-vim.g.gruvbox_material_transparent_background = '2'
-vim.g.gruvbox_material_diagnostic_line_highlight = '1'
-vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
+vim.g.gruvbox_material_transparent_background = 2
+vim.g.gruvbox_material_diagnostic_line_highlight = 1
+vim.g.gruvbox_material_diagnostic_virtual_text = 'highlighted'
+vim.g.gruvbox_material_diagnostic_text_highlight = 1
 vim.g.gruvbox_material_spell_foreground = 'colored'
-vim.g.gruvbox_material_enable_italic = '1'
-vim.g.gruvbox_material_enable_bold = '0'
+vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_enable_bold = 0
 vim.g.gruvbox_material_disable_terminal_colors = 1
+vim.g.gruvbox_material_show_eob = 0
 vim.cmd.colorscheme 'gruvbox-material'
+
+require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+    },
+    transparent_background = false, -- disables setting the background color.
+    integrations = {
+        cmp = true,
+        telescope = true,
+    },
+})
 
 vim.g.floaterm_keymap_toggle = '<F12>'
 vim.g.floaterm_autoclose = 2
