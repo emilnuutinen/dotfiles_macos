@@ -156,10 +156,6 @@ a:hover {
   list-style-type: none;
 }
 
-.list-links ul:first-child {
-  margin-top: 2rem;
-}
-
 .list-links ul:last-child {
   margin-bottom: 0;
 }
