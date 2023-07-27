@@ -21,8 +21,16 @@ require("telescope").setup{
         ["<C-l>"] = actions.select_vertical
       },
     },
+  },
+  extensions = {
+    -- Use Telescope for Neovim core stuff like code actions etc...
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {}
+    }
   }
 }
+
+require("telescope").load_extension("ui-select")
 
 -- Autopairs
 require("nvim-autopairs").setup {}

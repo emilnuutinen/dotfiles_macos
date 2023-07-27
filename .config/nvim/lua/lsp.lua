@@ -54,33 +54,33 @@ local handlers =  {
   ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {width = 80}),
 }
 
--- require("lsp-inlayhints").setup(
---   {
---     inlay_hints = {
---       parameter_hints = {
---         remove_colon_start = true,
---       },
---       -- type and other hints
---       type_hints = {
---         prefix = "=> ",
---         remove_colon_start = true,
---       },
---     },
---   }
--- )
--- 
--- vim.api.nvim_create_autocmd("LspAttach", {
---   callback = function(args)
---     if not (args.data and args.data.client_id) then
---       return
---     end
--- 
---     local bufnr = args.buf
---     local client = vim.lsp.get_client_by_id(args.data.client_id)
---     require("lsp-inlayhints").on_attach(client, bufnr)
---   end,
---   desc = "lsp-inlayhints",
--- })
+require("lsp-inlayhints").setup(
+  {
+    inlay_hints = {
+      parameter_hints = {
+        remove_colon_start = true,
+      },
+      -- type and other hints
+      type_hints = {
+        prefix = "=> ",
+        remove_colon_start = true,
+      },
+    },
+  }
+)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    if not (args.data and args.data.client_id) then
+      return
+    end
+
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    require("lsp-inlayhints").on_attach(client, bufnr)
+  end,
+  desc = "lsp-inlayhints",
+})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -88,10 +88,10 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Enable inlay hints if client supports them
-  if client.supports_method("textDocument/inlayHint") then
-    vim.lsp.buf.inlay_hint(bufnr, true)
-  end
+  -- Enable native inlay hints if client supports them
+--  if client.supports_method("textDocument/inlayHint") then
+--    vim.lsp.buf.inlay_hint(bufnr, true)
+--  end
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -151,6 +151,9 @@ lspconfig.rust_analyzer.setup {
       checkOnSave = {
         command = "clippy"
       },
+      inlayHints = {
+        parameterHints = false,
+      }
     }
   }
 }
@@ -225,6 +228,12 @@ vim.diagnostic.config({
     update_in_insert = false,
     underline = true,
     severity_sort = false,
+    virtual_text = {
+      source = "always",  -- Or "if_many"
+    },
+    float = {
+      source = "always",  -- Or "if_many"
+    },
     float = {
         border = 'none',
         source = 'always',
