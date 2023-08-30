@@ -72,10 +72,16 @@ vim.opt.titlelen = 50
 -- Hide foldcolumn
 vim.o.foldenable = false
 
--- Format on save
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
+-- Format on save if the language server supports formatting
+vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
-  callback = function() vim.lsp.buf.format() end,
+  callback = function()
+    local bufnr = vim.fn.bufnr()
+    local clients = vim.lsp.buf_get_clients(bufnr)
+    if #clients > 0 then
+      vim.lsp.buf.format()    
+    end
+  end,
 })
 
 -- Split windows
