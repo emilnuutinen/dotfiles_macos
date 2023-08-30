@@ -243,13 +243,4 @@ vim.diagnostic.config({
     }, 
 })
 
-require'nvim-treesitter.configs'.setup {
-  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = { "bash", "c", "cpp", "css", "dockerfile", "go", "graphql", "html", "javascript", "json", "lua", "python", "rust", "scss", "toml", "tsx", "typescript", "vim", "yaml" },
-  auto_install = true,
-  highlight = {
-    enable = true,
-    disable = { "markdown" },
-  },
-}
 
