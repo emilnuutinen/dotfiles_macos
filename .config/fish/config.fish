@@ -12,10 +12,10 @@ starship init fish | source
 set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
 
-alias jf="cd ~/notes && sh ~/.scripts/journal/load_journal.sh && sh ~/.scripts/journal/journal.sh && cd -"
+alias jf="cd ~/notes && sh ~/.scripts/journal/load_journal.sh && sh ~/.scripts/journal/journal.sh"
 alias save="sh ~/.scripts/journal/save_journal.sh"
 alias wk="cd ~/notes && sh ~/.scripts/weekly/weekly.sh && cd -"
-alias ls="exa -al"
+alias ls="eza -al"
 alias vim="nvim"
 
 # tmux
@@ -27,6 +27,7 @@ alias work="cd ~/notes && sh ~/.scripts/log/log.sh && cd -"
 alias twork="sh ~/.scripts/tmux/work.sh"
 alias puhti="ssh [ADDRESS]"
 alias mahti="ssh [ADDRESS]"
+alias lumi="ssh [ADDRESS]"
 alias epsilon="ssh [ADDRESS]"
 
 
