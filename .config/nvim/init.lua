@@ -151,3 +151,6 @@ vim.g.netrw_browse_split = 4
 vim.g.netrw_altv = 1
 vim.g.netrw_winsize = 20
 
+-- List chars
+--vim.opt.list = true
+--vim.opt.listchars:append({ space = '·',trail= '·'})

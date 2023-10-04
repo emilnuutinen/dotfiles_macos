@@ -41,6 +41,7 @@ return {
             call gruvbox_material#highlight('htmlH6', l:palette.yellow, l:palette.none, 'bold')
             call gruvbox_material#highlight('Comment', l:palette.grey0, l:palette.none, 'italic')
             call gruvbox_material#highlight('LspInlayHint', l:palette.bg5, l:palette.none, 'italic')
+            call gruvbox_material#highlight('IndentBlankline', l:palette.bg5, l:palette.none)
             call gruvbox_material#highlight('NormalFloat', l:palette.fg1, l:palette.bg0,)
             call gruvbox_material#highlight('FloatBorder', l:palette.bg5, l:palette.bg0,)
             call gruvbox_material#highlight('PMenu', l:palette.fg1, l:palette.bg0,)
@@ -134,9 +135,23 @@ return {
       }
     end
   },
-  
+
   {"windwp/nvim-autopairs"},
-  {"lukas-reineke/indent-blankline.nvim"},
+  {
+    "lukas-reineke/indent-blankline.nvim", 
+    main = "ibl", 
+    config = function ()
+      local hooks = require "ibl.hooks"
+      hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+      require("ibl").setup { 
+        indent = {
+          char = "⎜",
+          tab_char = "⟶"
+        }, 
+        scope = { enabled = false },
+      }
+    end
+  },
 
   -- Completion framework
   {"hrsh7th/nvim-cmp"},
@@ -221,6 +236,5 @@ return {
       })
     end
   }
-
 }
 

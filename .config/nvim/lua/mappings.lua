@@ -52,8 +52,6 @@ nmap('<leader>k','<C-W>j')
 nmap('<leader>l','<C-W>k')
 nmap('<leader>;','<C-W>l')
 
-nmap('<CR>',':noh<CR><CR>')
-
 -- Map arrow keys to move naturally
 imap('<Down>','<C-o>gj')
 imap('<Up>','<C-o>gk')
