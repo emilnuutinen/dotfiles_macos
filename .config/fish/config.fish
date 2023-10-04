@@ -25,14 +25,14 @@ alias pro="sh ~/.scripts/tmux/project.sh"
 # Work related
 alias work="cd ~/notes && sh ~/.scripts/log/log.sh && cd -"
 alias twork="sh ~/.scripts/tmux/work.sh"
-alias puhti="ssh [ADDRESS]"
-alias mahti="ssh [ADDRESS]"
-alias lumi="ssh [ADDRESS]"
-alias epsilon="ssh [ADDRESS]"
+alias puhti="ssh "
+alias mahti="ssh "
+alias lumi="ssh -i .ssh/id_rsa "
+alias epsilon="ssh "
 
+# Open man with Neovim
+export MANPAGER='nvim +Man!'
+export MANWIDTH=80
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
-
+# Pyenv stuff
+pyenv init - | source

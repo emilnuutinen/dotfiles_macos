@@ -13,7 +13,7 @@ source $ZSH/oh-my-zsh.sh
 alias jf="cd ~/notes && sh ~/.scripts/journal/load_journal.sh && sh ~/.scripts/journal/journal.sh"
 alias save="sh ~/.scripts/journal/save_journal.sh"
 alias wk="cd ~/notes && sh ~/.scripts/weekly/weekly.sh"
-alias ls="exa -al"
+alias ls="eza -al"
 alias duck="sh ~/.scripts/duck.sh"
 alias '?'=duck
 alias vim="nvim"
@@ -29,21 +29,6 @@ alias puhti="ssh "
 alias mahti="ssh "
 alias epsilon="ssh "
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # Go path
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
@@ -54,3 +39,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Set Starship as theme
 eval "$(starship init zsh)"
+
+# Pyenv stuff
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
