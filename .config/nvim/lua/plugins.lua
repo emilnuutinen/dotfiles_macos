@@ -24,7 +24,7 @@ return {
             highlight! link TSTypeDefinition BlueItalic
             highlight! link TSNamespace PurpleItalic
 
-            let l:palette = gruvbox_material#get_palette('hard', 'original', {'bg0': ['#121212', '0']})
+            let l:palette = gruvbox_material#get_palette('hard', 'original', {})
 
             call gruvbox_material#highlight('String', l:palette.yellow, l:palette.none)
             call gruvbox_material#highlight('markdownH1', l:palette.yellow, l:palette.none, 'bold')
@@ -42,17 +42,11 @@ return {
             call gruvbox_material#highlight('Comment', l:palette.grey0, l:palette.none, 'italic')
             call gruvbox_material#highlight('LspInlayHint', l:palette.bg5, l:palette.none, 'italic')
             call gruvbox_material#highlight('IndentBlankline', l:palette.bg5, l:palette.none)
-            call gruvbox_material#highlight('NormalFloat', l:palette.fg1, l:palette.bg0,)
-            call gruvbox_material#highlight('FloatBorder', l:palette.bg5, l:palette.bg0,)
-            call gruvbox_material#highlight('PMenu', l:palette.fg1, l:palette.bg0,)
-            call gruvbox_material#highlight('ErrorFloat', l:palette.red, l:palette.bg0)
-            call gruvbox_material#highlight('WarningFloat', l:palette.yellow, l:palette.bg0)
-            call gruvbox_material#highlight('InfoFloat', l:palette.blue, l:palette.bg0)
-            call gruvbox_material#highlight('HintFloat', l:palette.green, l:palette.bg0)
             call gruvbox_material#highlight('Special', l:palette.blue, l:palette.none)
-            call gruvbox_material#highlight('PmenuSel', l:palette.fg1, l:palette.bg5)
+            call gruvbox_material#highlight('Pmenu', l:palette.fg1, l:palette.bg_dim)
+            call gruvbox_material#highlight('PmenuSel', l:palette.fg1, l:palette.bg3)
             call gruvbox_material#highlight('PmenuSbar', l:palette.none, l:palette.none)
-            call gruvbox_material#highlight('PmenuThumb', l:palette.none, l:palette.bg5)
+            call gruvbox_material#highlight('PmenuThumb', l:palette.none, l:palette.bg3)
         endfunction
             
         augroup GruvboxMaterialCustom
@@ -71,6 +65,7 @@ return {
       vim.g.gruvbox_material_enable_italic = 1
       vim.g.gruvbox_material_enable_bold = 0
       vim.g.gruvbox_material_disable_terminal_colors = 1
+      vim.g.gruvbox_material_float_style = 'dim'
       vim.cmd.colorscheme 'gruvbox-material'
     end,
   },
