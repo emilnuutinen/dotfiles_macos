@@ -30,6 +30,11 @@ cmp.setup({
     { name = 'vsnip' },                   -- nvim-cmp source for vim-vsnip
     { name = 'calc' },                    -- source for math calculation
   },
+  window = {
+    documentation = {
+      max_width = 80,
+    }
+  },
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
