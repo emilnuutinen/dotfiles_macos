@@ -1,7 +1,6 @@
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 return {
-
   {
     "sainnhe/gruvbox-material",
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
@@ -75,7 +74,7 @@ return {
     name = "catppuccin",
     config = function()
       require("catppuccin").setup({
-        flavour = "mocha",   -- latte, frappe, macchiato, mocha
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
         background = {
           light = "latte",
           dark = "mocha",
