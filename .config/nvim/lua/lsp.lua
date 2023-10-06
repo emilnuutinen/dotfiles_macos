@@ -1,4 +1,4 @@
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
   snippet = {
@@ -22,13 +22,13 @@ cmp.setup({
     })
   },
   sources = {
-    { name = 'path' },          -- file paths
-    { name = 'nvim_lsp' },      -- from language server
+    { name = 'path' },                    -- file paths
+    { name = 'nvim_lsp' },                -- from language server
     { name = 'nvim_lsp_signature_help' }, -- display function signatures with current parameter emphasized
-    { name = 'nvim_lua' },      -- complete neovim's Lua runtime API such vim.lsp.*
-    { name = 'buffer' },        -- source current buffer
-    { name = 'vsnip' },         -- nvim-cmp source for vim-vsnip 
-    { name = 'calc'},           -- source for math calculation
+    { name = 'nvim_lua' },                -- complete neovim's Lua runtime API such vim.lsp.*
+    { name = 'buffer' },                  -- source current buffer
+    { name = 'vsnip' },                   -- nvim-cmp source for vim-vsnip
+    { name = 'calc' },                    -- source for math calculation
   },
 })
 
@@ -49,9 +49,9 @@ cmp.setup.cmdline(':', {
 })
 
 -- LSP settings (for overriding per client)
-local handlers =  {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {width = 80}),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {width = 80}),
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { width = 80 }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { width = 80 }),
 }
 
 require("lsp-inlayhints").setup(
@@ -89,13 +89,13 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Enable native inlay hints if client supports them
---  if client.supports_method("textDocument/inlayHint") then
---    vim.lsp.buf.inlay_hint(bufnr, true)
---  end
+  --  if client.supports_method("textDocument/inlayHint") then
+  --    vim.lsp.buf.inlay_hint(bufnr, true)
+  --  end
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -116,7 +116,7 @@ local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local servers = { 'bashls', 'cssls', 'html', 'vimls' }
+local servers = { 'bashls', 'cssls', 'html', 'lua_ls', 'vimls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -129,16 +129,16 @@ lspconfig.pylsp.setup {
   on_attach = on_attach,
   handlers = handlers,
   capabilities = capabilities,
-	settings = {
-		pylsp = {
-			plugins = {
-				ruff = {
-					enabled = true,
-					extendSelect = { "I" },
-				},
-			}
-		}
-	}
+  settings = {
+    pylsp = {
+      plugins = {
+        ruff = {
+          enabled = true,
+          extendSelect = { "I" },
+        },
+      }
+    }
+  }
 }
 
 lspconfig.rust_analyzer.setup {
@@ -163,17 +163,17 @@ lspconfig.gopls.setup {
   handlers = handlers,
   capabilities = capabilities,
   settings = {
-      gopls = {
-        hints = {
-          assignVariableTypes = true,
-          compositeLiteralFields = true,
-          constantValues = true,
-          functionTypeParameters = true,
-          -- parameterNames = true ,
-          rangeVariableTypes = true,
-        }
-      },
-    }
+    gopls = {
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        -- parameterNames = true ,
+        rangeVariableTypes = true,
+      }
+    },
+  }
 }
 
 lspconfig.tsserver.setup {
@@ -216,30 +216,25 @@ lspconfig.tsserver.setup {
   }
 }
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 vim.diagnostic.config({
-    signs = true,
-    update_in_insert = false,
-    underline = true,
-    severity_sort = false,
-    virtual_text = {
-      source = "always",  -- Or "if_many"
-    },
-    float = {
-      source = "always",  -- Or "if_many"
-    },
-    float = {
-        border = 'none',
-        source = 'always',
-        header = '',
-        prefix = '',
-        width = 100,
-    }, 
+  signs = true,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = false,
+  virtual_text = {
+    source = "always", -- Or "if_many"
+  },
+  float = {
+    border = 'none',
+    source = 'always',
+    header = '',
+    prefix = '',
+    width = 100,
+  },
 })
-
-

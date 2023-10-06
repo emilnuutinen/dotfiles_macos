@@ -4,10 +4,10 @@ return {
 
   {
     "sainnhe/gruvbox-material",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      vim.cmd[[
+      vim.cmd [[
         function! s:gruvbox_material_custom() abort
             highlight! link TSString String
             highlight! link CocSymbolString String
@@ -16,7 +16,7 @@ return {
             highlight! link cmakeKWstring String
             highlight! link mkdHeading Yellow
             highlight! link mkdListItem Fg
-            highlight! link mkdBold Fg 
+            highlight! link mkdBold Fg
             highlight! link mkdCodeDelimiter Green
             highlight! link mkdListItemCheckbox Fg
             highlight! link TSType BlueItalic
@@ -48,7 +48,7 @@ return {
             call gruvbox_material#highlight('PmenuSbar', l:palette.none, l:palette.none)
             call gruvbox_material#highlight('PmenuThumb', l:palette.none, l:palette.bg3)
         endfunction
-            
+
         augroup GruvboxMaterialCustom
             autocmd!
             autocmd ColorScheme gruvbox-material call s:gruvbox_material_custom()
@@ -71,27 +71,27 @@ return {
   },
 
   {
-    "catppuccin/nvim", 
+    "catppuccin/nvim",
     name = "catppuccin",
-    config = function ()
+    config = function()
       require("catppuccin").setup({
-          flavour = "mocha", -- latte, frappe, macchiato, mocha
-          background = {
-              light = "latte",
-              dark = "mocha",
-          },
-          transparent_background = false,
-          integrations = {
-              cmp = true,
-              telescope = true,
-          },
+        flavour = "mocha",   -- latte, frappe, macchiato, mocha
+        background = {
+          light = "latte",
+          dark = "mocha",
+        },
+        transparent_background = false,
+        integrations = {
+          cmp = true,
+          telescope = true,
+        },
       })
     end,
   },
 
   {
     "preservim/vim-markdown",
-    config = function ()
+    config = function()
       vim.g.vim_markdown_folding_disabled = 1
       vim.g.vim_markdown_conceal = 0
       vim.g.vim_markdown_conceal_code_blocks = 0
@@ -108,17 +108,17 @@ return {
     end,
   },
 
-  {"nvim-lua/plenary.nvim"},
-  {"nvim-telescope/telescope.nvim"},
-  {"nvim-telescope/telescope-fzy-native.nvim"},
-  {"nvim-telescope/telescope-file-browser.nvim"},
-  {"nvim-telescope/telescope-ui-select.nvim"},
-  {"neovim/nvim-lspconfig"},
-  
+  { "nvim-lua/plenary.nvim" },
+  { "nvim-telescope/telescope.nvim" },
+  { "nvim-telescope/telescope-fzy-native.nvim" },
+  { "nvim-telescope/telescope-file-browser.nvim" },
+  { "nvim-telescope/telescope-ui-select.nvim" },
+  { "neovim/nvim-lspconfig" },
+
   {
-    "nvim-treesitter/nvim-treesitter", 
+    "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function () 
+    config = function()
       require('nvim-treesitter.install').compilers = { 'gcc' }
       require('nvim-treesitter.configs').setup {
         ensure_installed = { "javascript", "lua", "python", "rust", "tsx", "typescript", },
@@ -131,54 +131,35 @@ return {
     end
   },
 
-  {"windwp/nvim-autopairs"},
-  {
-    "lukas-reineke/indent-blankline.nvim", 
-    main = "ibl", 
-    config = function ()
-      local hooks = require "ibl.hooks"
-      hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-      require("ibl").setup { 
-        indent = {
-          char = "⎜",
-          tab_char = "⟶"
-        }, 
-        scope = { enabled = false },
-      }
-    end
-  },
+  { "windwp/nvim-autopairs" },
 
   -- Completion framework
-  {"hrsh7th/nvim-cmp"},
- 
+  { "hrsh7th/nvim-cmp" },
+
   -- LSP completion source:
-  {"hrsh7th/cmp-nvim-lsp"},
- 
+  { "hrsh7th/cmp-nvim-lsp" },
+
   -- Useful completion sources:
-  {"hrsh7th/cmp-nvim-lua"},
-  {"hrsh7th/cmp-nvim-lsp-signature-help"},
-  {"hrsh7th/cmp-vsnip"},
-  {"hrsh7th/cmp-path"},
-  {"hrsh7th/vim-vsnip"},
- 
+  { "hrsh7th/cmp-nvim-lua" },
+  { "hrsh7th/cmp-nvim-lsp-signature-help" },
+  { "hrsh7th/cmp-vsnip" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/vim-vsnip" },
+
   -- Inlay hints
-  {"lvimuser/lsp-inlayhints.nvim"},
+  { "lvimuser/lsp-inlayhints.nvim" },
 
   -- lualine
-  {"nvim-lualine/lualine.nvim"},
+  { "nvim-lualine/lualine.nvim" },
 
   {
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
-      },
-    config = function ()
+    },
+    config = function()
       require("notify").setup({
         background_colour = "#000000",
         stages = "fade",
@@ -221,15 +202,7 @@ return {
             ["cmp.entry.get_documentation"] = true,
           },
         },
-        -- you can enable a preset for easier configuration
-        presets = {
-          command_palette = true, -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false, -- add a border to hover docs and signature help
-        },
       })
     end
   }
 }
-

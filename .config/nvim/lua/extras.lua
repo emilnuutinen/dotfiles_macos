@@ -3,14 +3,14 @@ require('telescope').load_extension('fzy_native')
 require("telescope").load_extension('file_browser')
 
 local actions = require("telescope.actions")
-require("telescope").setup{
+require("telescope").setup {
   defaults = {
     layout_config = {
       horizontal = {
-            height = 0.9,
-            preview_cutoff = 160,
-            prompt_position = "bottom",
-            width = 0.9
+        height = 0.9,
+        preview_cutoff = 160,
+        prompt_position = "bottom",
+        width = 0.9
       }
     },
     mappings = {
@@ -43,7 +43,7 @@ autopairs.add_rules {
 
 -- Lualine
 local function getWords()
-  local validFileTypes = {md= true, txt = true, markdown = true}
+  local validFileTypes = { md = true, txt = true, markdown = true }
 
   if validFileTypes[vim.bo.filetype] then
     return vim.fn.wordcount().words .. " words"
@@ -58,7 +58,6 @@ local function progress()
   return string.format('%2d%%%%', math.floor(cur / total * 100))
 end
 
-local lualine = require('lualine')
 require('lualine').setup {
   options = {
     icons_enabled = false,
@@ -72,12 +71,12 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch'},
-    lualine_c = {'filename', 'diagnostics', 'diff'},
-    lualine_x = {'encoding', 'filetype', { getWords }},
-    lualine_y = {{ progress }},
-    lualine_z = {'location'}
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch' },
+    lualine_c = { 'filename', 'diagnostics', 'diff' },
+    lualine_x = { 'encoding', 'filetype', { getWords } },
+    lualine_y = { { progress } },
+    lualine_z = { 'location' }
   },
   inactive_sections = {},
   tabline = {},

@@ -34,11 +34,11 @@ require("lazy").setup("plugins",
     },
   }
 )
-require ("extras")
-require ("lsp")
-require ("mappings")
+require("extras")
+require("lsp")
+require("mappings")
 
-vim.cmd[[
+vim.cmd [[
 " Go tabbing
 au BufNewFile,BufRead *.go set filetype=go
 autocmd filetype go setlocal tabstop=4
@@ -79,13 +79,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     local bufnr = vim.fn.bufnr()
     local clients = vim.lsp.buf_get_clients(bufnr)
     if #clients > 0 and clients[1].supports_method("textDocument/formatting") then
-      vim.lsp.buf.format()    
+      vim.lsp.buf.format()
     end
   end,
 })
 
 -- Split windows
-vim.opt.fillchars = {vert ='│'}
+vim.opt.fillchars = { vert = '│' }
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
@@ -107,7 +107,7 @@ vim.opt.expandtab = true
 vim.opt.foldenable = false
 
 -- Colorcolumn
-vim.opt.colorcolumn = {80}
+vim.opt.colorcolumn = { 80 }
 
 -- Highlight current line number
 vim.opt.cursorline = true
