@@ -37,29 +37,29 @@ nmap('<leader>fb', '<cmd>Telescope file_browser<cr>')
 nmap('<leader>fd', '<cmd>Telescope diagnostics<cr>')
 
 -- More natural movement
-nmap('j','h')
-nmap('k','j')
-nmap('l','k')
-nmap(';','l')
-vmap('j','h')
-vmap('k','j')
-vmap('l','k')
-vmap(';','l')
+nmap('j', 'h')
+nmap('k', 'j')
+nmap('l', 'k')
+nmap(';', 'l')
+vmap('j', 'h')
+vmap('k', 'j')
+vmap('l', 'k')
+vmap(';', 'l')
 
 -- More natural window movement
-nmap('<leader>j','<C-W>h')
-nmap('<leader>k','<C-W>j')
-nmap('<leader>l','<C-W>k')
-nmap('<leader>;','<C-W>l')
+nmap('<leader>j', '<C-W>h')
+nmap('<leader>k', '<C-W>j')
+nmap('<leader>l', '<C-W>k')
+nmap('<leader>;', '<C-W>l')
 
 -- Map arrow keys to move naturally
-imap('<Down>','<C-o>gj')
-imap('<Up>','<C-o>gk')
-nmap('<Down>','gj')
-nmap('<Up>','gk')
+imap('<Down>', '<C-o>gj')
+imap('<Up>', '<C-o>gk')
+nmap('<Down>', 'gj')
+nmap('<Up>', 'gk')
 
 -- Equal panes
-nmap('<Leader>=',  '<C-W>=')
+nmap('<Leader>=', '<C-W>=')
 
 -- Center screen on search result
 nmap('n', 'nzzzv')
@@ -70,9 +70,31 @@ imap('<F1>', '<C-R>=strftime("**[%H:%M]** ")<CR><C-o>:cal cursor(0,13)<CR>')
 nmap('<F1>', 'i<C-R>=strftime("**[%H:%M]** ")<CR><C-o>:cal cursor(0,13)<CR>')
 
 -- Insert a new todo template
-imap('<F2>','<C-R>="- [ ] "<CR><C-o>:cal cursor(0,10)<CR>')
+imap('<F2>', '<C-R>="- [ ] "<CR><C-o>:cal cursor(0,10)<CR>')
 nmap('<F2>', 'i<C-R>="- [ ] "<CR><C-o>:cal cursor(0,12)<CR>')
 
 -- Insert heading with todays date in markdown
-imap('<F3>','<C-R>=strftime("### %d-%m-%Y")<CR>')
-nmap('<F3>','i<C-R>=strftime("### %d-%m-%Y")<CR>')
+imap('<F3>', '<C-R>=strftime("### %d-%m-%Y")<CR>')
+nmap('<F3>', 'i<C-R>=strftime("### %d-%m-%Y")<CR>')
+
+-- Toggle todos done/undone
+function ToggleTodo()
+  local line = vim.fn.getline('.')
+  local updated_line, _ = string.gsub(line, '%[%s?%w?%s?%]', function(match)
+    if match == '[ ]' then
+      return '[x]'
+    elseif match == '[x]' then
+      return '[ ]'
+    else
+      return match
+    end
+  end)
+
+  if updated_line ~= line then
+    vim.fn.setline('.', updated_line)
+  end
+end
+
+vim.cmd([[
+  autocmd FileType markdown nnoremap <silent> <buffer> <leader><Space> :lua ToggleTodo()<CR>
+]])
