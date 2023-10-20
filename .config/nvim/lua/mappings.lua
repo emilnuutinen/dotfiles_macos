@@ -96,5 +96,5 @@ function ToggleTodo()
 end
 
 vim.cmd([[
-  autocmd FileType markdown nnoremap <silent> <buffer> <leader><Space> :lua ToggleTodo()<CR>
+  autocmd FileType markdown nnoremap <silent> <buffer> <leader>x :lua ToggleTodo()<CR>
 ]])

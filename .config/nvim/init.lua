@@ -54,7 +54,7 @@ autocmd filetype markdown set textwidth=80
 autocmd filetype markdown set colorcolumn=
 autocmd filetype markdown set nolist
 " Fix wrapping lists with gq
-autocmd FileType markdown set comments=fb:*,fb:+,fb:-,n:> indentexpr=
+"autocmd FileType markdown set comments=fb:*,fb:+,fb:-,n:> indentexpr=
 ]]
 
 vim.opt.updatetime = 50
