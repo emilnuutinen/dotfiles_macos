@@ -8,7 +8,7 @@
   --magenta: #d3869b;
   --cyan: #8ec07c;
   --link-hover-timing: all 0.25s ease-in-out;
-  --fonts: 'JetBrains Mono';
+  --fonts: monospace;
 }
 
 /*------------------------------------------------------------------------------
@@ -99,7 +99,7 @@ form {
 
 body {
   background-color: var(--bg);
-  font-family: 'JetBrains Mono';
+  font-family: monospace;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.2;
